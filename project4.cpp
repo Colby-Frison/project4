@@ -2,6 +2,20 @@
 #include <vector>
 using namespace std;
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+Colby frison
+C S - 2413 ~ Data Structure
+Project 4 ~ M-Tree
+
+An M-tree is basically a 2,3 tree. 
+
+
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+
+
+
 // Exception classes
 class NotFoundException : public exception {
     const char* what() const throw() {
@@ -15,7 +29,7 @@ class duplicateInsertion : public exception {
     }
 };
 
-// Custom implementations of algorithm functions
+// implementations of algorithm functions
 template<typename Iterator, typename T>
 Iterator custom_lower_bound(Iterator first, Iterator last, const T& value) {
     while (first != last) {
@@ -34,6 +48,8 @@ bool custom_binary_search(Iterator first, Iterator last, const T& value) {
     return (it != last && !(value < *it));
 }
 
+
+// MTree class, main section of program
 template <typename DT>
 class MTree {
 protected:
@@ -42,20 +58,29 @@ protected:
     vector<MTree*> children; // Pointers to child MTrees (M+1 children)
 
 public:
-    MTree(int M) : M(M) {}
+    // initialize treee, set max nodes per child
+    MTree(int M) : M(M) {
 
+        //know size of vector so reserve size to save time
+        values.reserve(M-1);
+        children.reserve(M+1);
+    }
+
+    // loop through entire tree deleting each
     ~MTree() {
         for (auto child : children) {
             delete child;
         }
     }
 
+    // if the node has no children its a leaf, good dignifier of when to end loop/recursion
     bool is_leaf() const {
         return children.empty();
     }
 
+    //insert value into the tree
     void insert(const DT& value) {
-        // If value already exists, throw exception
+        // use search to see if value is already in the tree, if so throw exception
         if (search(value)) {
             throw duplicateInsertion();
         }
@@ -73,7 +98,7 @@ public:
         } else {
             // Find the correct child to insert into
             MTree* child = find_child(value);
-            child->insert(value);
+            child->insert(value); // recursive statement
         }
     }
 
@@ -137,19 +162,6 @@ public:
         }
     }
 
-    vector<DT> collect_values() {
-        vector<DT> allValues;
-        if (is_leaf()) {
-            allValues.insert(allValues.end(), values.begin(), values.end());
-        } else {
-            for (auto child : children) {
-                vector<DT> childValues = child->collect_values();
-                allValues.insert(allValues.end(), childValues.begin(), childValues.end());
-            }
-        }
-        return allValues;
-    }
-
     void buildTree(vector<DT>& input_values) {
         // Clear existing tree
         for (auto child : children) {
@@ -170,13 +182,15 @@ public:
         // Create child nodes
         for (int i = 0; i < M; i++) {
             int start = i * D;
-            int end = (i == M-1) ? input_values.size() : (i+1) * D;
+            //output statement for start
+
+            int end = (i == M-1) ? input_values.size() : (i+1) * D; // this is ternary 
             
             if (start < end) {
                 vector<DT> childValues(input_values.begin() + start, 
                                      input_values.begin() + end);
                 MTree* child = new MTree(M);
-                child->buildTree(childValues);
+                child->buildTree(childValues); // recursive call
                 children.push_back(child);
                 
                 if (i < M-1 && end < input_values.size()) {
@@ -187,6 +201,20 @@ public:
         cout << "The tree has been rebuilt." << endl;
     }
 
+    vector<DT> collect_values() {
+        vector<DT> allValues;
+        if (is_leaf()) {
+            allValues.insert(allValues.end(), values.begin(), values.end());
+        } else {
+            for (auto child : children) {
+                vector<DT> childValues = child->collect_values(); // recursive call
+                allValues.insert(allValues.end(), childValues.begin(), childValues.end());
+            }
+        }
+        return allValues;
+    }
+
+    // just a search wrapper, check instructions to see if I have to find the index or height or something
     bool find(DT value) {
         bool found = search(value);
         if (found) {
@@ -197,6 +225,7 @@ public:
         return found;
     }
 
+    //just a display method, check instructions to see if theres some special syntax
     void print_final_list() {
         vector<DT> final_values = collect_values();
         cout << "Final list: ";
@@ -210,6 +239,8 @@ public:
     }
 };
 
+
+// main method, compare with instructions to make sure all is good
 int main() {
     int n;
     cin >> n;
