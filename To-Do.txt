@@ -28,3 +28,18 @@ Checklist and dev notes :)
 [] Ensure main method matches the one provided
 [] Make sure all rules are followed
 [] Parts 2 and 3
+
+[] Change output to single statement instead of cout statements
+
+
+11/12/2024 5:50
+ - I just did the first quick comparison with the actual test case and it seems pretty good, I still need to go through and
+   check everything off on the To-Do list, but so far it seems pretty good
+ - An issue I'm having is I have to start and stop the running for it to actually do the whole thing, I have no clue why, but it still working
+   for whatever reason. I assume its a compiler issue cuz its still works (i think), but there really isn't a way to be sure. I'll do that at some point
+ - Still need to change the output so it spits it all out at the end, I don't know if thats an issue with not doing redirect input or its just
+   the right way, but I need to do it regardless
+ - What I'm realizing is this is just a sorting method for a list, so the output being the same doesn't really mean anything, but then again 
+   most of the program is just rearranging the list, so theres no real tell tale way to know if im doing this correctly.
+ - I can go more in depth on the outputs to see if there is a difference, and try to relate the stuff to the M-tree structure, but its lack of
+   solid definition also makes it difficult to properly know how to do stuff. 
