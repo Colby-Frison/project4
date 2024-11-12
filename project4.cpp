@@ -242,7 +242,7 @@ public:
                 }
             }
         }
-        cout << "The tree has been rebuilt." << endl;
+        //cout << "The tree has been rebuilt." << endl;
     }
 
     /* * * * * Collect Values Method * * * * * *
@@ -347,6 +347,7 @@ int main() {
             case 'B': {
                 vector<int> myValues = myTree->collect_values();
                 myTree->buildTree(myValues);
+                cout << "The tree has been rebuilt." << endl;
                 break;
             }
             default:
