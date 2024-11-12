@@ -4,16 +4,16 @@ using namespace std;
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 Colby frison
-C S - 2413 ~ Data Structure
-Project 4 ~ M-Tree
+CS-2413 ~ Data Structure
+Project4 ~ M-Tree
 
-An M-tree is basically a 2,3 tree. 
+An M-tree is basically a 2,3 tree. the tree consists of 3 main vairables, 'M', 'values', and 'children'. Starting
+with 'M' it means there are M children per noce, and 'M-1' values per node; so if M=3 then each node contains 2 
+values and has 3 children nodes. The next is 'values' which simply store the values in that given node, its pretty
+much the _info. The last is 'children' it is a vector of Mtree nodes that are the children of the given node. This 
+makes recursion very simple as it makes each node its own tree. 
 
-
-
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
-
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 
 // Exception classes
