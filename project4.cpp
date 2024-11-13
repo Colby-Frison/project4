@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <string>
+
 using namespace std;
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -199,7 +201,7 @@ public:
                 throw NotFoundException();
             }
             values.erase(it);
-            cout << "The value = " << value << " has been removed." << endl; // change this
+            //cout << "The value = " << value << " has been removed." << endl; // change this
         } else {
             MTree* child = find_child(value);
             child->remove(value);
@@ -272,32 +274,35 @@ public:
     * * * * * * * * * * * * * * * * * * * * * * */
     bool find(DT value) {
         bool found = search(value);
-        if (found) {
-            cout << "The element with value = " << value << " was found." << endl; // adjust these
-        } else {
-            cout << "The element with value = " << value << " not found." << endl;
-        }
         return found;
     }
 
     // I have it printing the full list at the end, but I dont think this is useful so probably delete 
     // if it isn't really needed
-    void print_final_list() {
+    string print_final_list() {
         vector<DT> final_values = collect_values();
-        cout << "Final list: ";
+        string output = "";
+        output += "Final list: ";
         int count = 0;
         for (const auto& value : final_values) {
-            cout << value << " ";
+            output += "" + to_string(value);
+            output += " ";
             count++;
-            if (count % 20 == 0 && count < final_values.size()) cout << endl;
+            if (count % 20 == 0 && count < final_values.size()) 
+                output += "\n";
         }
-        cout << endl;
+        output += "\n";
+
+        return output;
     }
 };
 
 
 // main method, compare with instructions to make sure all is good
 int main() {
+    // String to handle outputs
+    string output = "";
+
     int n;
     cin >> n;
     
@@ -326,7 +331,8 @@ int main() {
                 try {
                     myTree->insert(value);
                 } catch (duplicateInsertion& e) {
-                    cout << "The value = " << value << " already in the tree." << endl;
+                    output += "The value = " + to_string(value);
+                    output += " already in the tree.\n";
                 }
                 break;
             }
@@ -334,28 +340,40 @@ int main() {
                 cin >> value;
                 try {
                     myTree->remove(value);
+                    output += "The value = ";
+                    output += "" + value;
+                    output += " has been removed.\n";
                 } catch (NotFoundException& e) {
-                    cout << "The value = " << value << " not found." << endl;
+                    output += "The value = " + to_string(value);
+                    output += " not found.\n";
                 }
                 break;
             }
             case 'F': {
                 cin >> value;
-                myTree->find(value);
+                output += "The element with value = " + to_string(value);
+                if(myTree->find(value)){
+                    output += " was found.\n";
+                } else {
+                    output += " not found.\n";
+                }
                 break;
             }
             case 'B': {
                 vector<int> myValues = myTree->collect_values();
                 myTree->buildTree(myValues);
-                cout << "The tree has been rebuilt." << endl;
+                output+= "The tree has been rebuilt.\n";
                 break;
             }
             default:
-                cout << "Invalid command!" << endl;
+                output+= "Invalid command!\n";
         }
     }
 
-    myTree->print_final_list();
+    output += myTree->print_final_list();
     delete myTree;
+
+    cout << output; // print output
+
     return 0;
 }
