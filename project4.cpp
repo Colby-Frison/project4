@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <string>
 
 using namespace std;
 
@@ -48,6 +47,66 @@ template<typename Iterator, typename T>
 bool custom_binary_search(Iterator first, Iterator last, const T& value) {
     Iterator it = custom_lower_bound(first, last, value);
     return (it != last && !(value < *it));
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * *
+The following is a series of helper functions that are needed
+in order to handle the output.
+
+This is like overly complicated for what its doing, but since
+the instructions don't allow the string library it has to be done.
+
+* * * * * * * * * * * * * * * * * * * * * * * * * */
+
+void intToCharVector(int num, vector<char>& output) {
+    if (num == 0) {
+        output.push_back('0');
+        return;
+    }
+
+    vector<char> temp;
+    bool isNegative = false;
+
+    if (num < 0) {
+        isNegative = true;
+        num = -num;
+    }
+
+    while (num > 0) {
+        temp.push_back('0' + num % 10);
+        num /= 10;
+    }
+
+    if (isNegative) {
+        temp.push_back('-');
+    }
+
+    // Reverse the temp vector and append to output
+    for (auto it = temp.rbegin(); it != temp.rend(); ++it) {
+        output.push_back(*it);
+    }
+}
+
+// Helper function to add an integer to a char vector string
+void addIntToOutput(vector<char>& output, int num) {
+    intToCharVector(num, output);
+    //output.push_back(' '); // Add a space after the number
+}
+
+// Helper function to add a word to a char vector
+void addWordToOutput(vector<char>& output, const string& word) {
+    for (char c : word) {
+        output.push_back(c);
+    }
+}
+
+// Helper function to add a new line to the output
+void addNewLineToOutput(vector<char>& output) {
+    output.push_back('\n');
+}
+
+void appendVectorToOutput(vector<char>& output, const vector<char>& toAppend){
+    output.insert(output.end(), toAppend.begin(), toAppend.end());
 }
 
 
@@ -279,29 +338,30 @@ public:
 
     // I have it printing the full list at the end, but I dont think this is useful so probably delete 
     // if it isn't really needed
-    string print_final_list() {
+    vector<char> print_final_list(){
         vector<DT> final_values = collect_values();
-        string output = "";
-        output += "Final list: ";
+
+        vector<char> output;
+
+        addWordToOutput(output, "Final list: ");
         int count = 0;
         for (const auto& value : final_values) {
-            output += "" + to_string(value);
-            output += " ";
+            addIntToOutput(output, value);
+            addWordToOutput(output, " ");
             count++;
             if (count % 20 == 0 && count < final_values.size()) 
-                output += "\n";
+                addNewLineToOutput(output);
         }
-        output += "\n";
+        addNewLineToOutput(output);
 
         return output;
     }
 };
 
-
 // main method, compare with instructions to make sure all is good
 int main() {
-    // String to handle outputs
-    string output = "";
+    // output handler
+    vector<char> output;
 
     int n;
     cin >> n;
@@ -331,8 +391,10 @@ int main() {
                 try {
                     myTree->insert(value);
                 } catch (duplicateInsertion& e) {
-                    output += "The value = " + to_string(value);
-                    output += " already in the tree.\n";
+                    addWordToOutput(output, "The value = ");
+                    addIntToOutput(output, value);
+                    addWordToOutput(output, " already in the tree.");
+                    addNewLineToOutput(output);
                 }
                 break;
             }
@@ -340,40 +402,49 @@ int main() {
                 cin >> value;
                 try {
                     myTree->remove(value);
-                    output += "The value = ";
-                    output += "" + value;
-                    output += " has been removed.\n";
+                    addWordToOutput(output, "The value = ");
+                    addIntToOutput(output, value);
+                    addWordToOutput(output, " has been removed.");
+                    addNewLineToOutput(output);
                 } catch (NotFoundException& e) {
-                    output += "The value = " + to_string(value);
-                    output += " not found.\n";
+                    addWordToOutput(output, "The value = ");
+                    addIntToOutput(output, value);
+                    addWordToOutput(output, " not found.");
+                    addNewLineToOutput(output);
                 }
                 break;
             }
             case 'F': {
                 cin >> value;
-                output += "The element with value = " + to_string(value);
+                addWordToOutput(output, "The element with value = ");
+                addIntToOutput(output, value);
                 if(myTree->find(value)){
-                    output += " was found.\n";
+                    addWordToOutput(output, " was found.");
+                    addNewLineToOutput(output);
                 } else {
-                    output += " not found.\n";
+                    addWordToOutput(output, " not found.");
+                    addNewLineToOutput(output);
                 }
                 break;
             }
             case 'B': {
                 vector<int> myValues = myTree->collect_values();
                 myTree->buildTree(myValues);
-                output+= "The tree has been rebuilt.\n";
+                addWordToOutput(output, "The tree has been rebuilt.");
+                addNewLineToOutput(output);
                 break;
             }
             default:
-                output+= "Invalid command!\n";
+                addWordToOutput(output, "Invalid command!");
+                addNewLineToOutput(output);
         }
     }
 
-    output += myTree->print_final_list();
+    appendVectorToOutput(output, myTree->print_final_list());
     delete myTree;
 
-    cout << output; // print output
+    string result(output.begin(), output.end());// create string based on output vector
+    cout << result << endl; // output result string
 
     return 0;
 }

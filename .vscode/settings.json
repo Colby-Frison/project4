@@ -10,7 +10,8 @@
         "vector": "cpp",
         "format": "cpp",
         "initializer_list": "cpp",
-        "xstring": "cpp"
+        "xstring": "cpp",
+        "string": "cpp"
     },
     "cSpell.words": [
         "cout"
