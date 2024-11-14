@@ -30,6 +30,7 @@ Checklist and dev notes :)
 [] Ensure main method matches the one provided
 [%] Make sure all rules are followed
 [] Parts 2 and 3
+  - 2 works 3 does not
 
 [%] Change output to single statement instead of cout statements
 
@@ -58,3 +59,10 @@ Checklist and dev notes :)
  - Assuming all of the logic is actually correct all I really have to do left is just fix the issue were the compiler stops mid way through
    and I just have to click pause and play to keep it going, along with making sure 2 and 3 match. I also have to write parts 2 and 3, but 
    this is kinda part of that so it won't be that difficult.
+
+11/14/2024 3:47
+ - just submitted it to the gradescope to see if it actually works, and it took a while, but it did run and passed for cases 1 and 
+   2, 3 did not pass, but thats probably because of the exceptions that I haven't really verified yet. 
+ - I'm still going to verify that I'm actually doing this properly, and make sure everything is actually done, but I just wanted to see
+   if the code actually ran properly before it was due
+ - I also still need to do parts 2 and 3, but thats pretty easy. And comments are already done for most of the code so nothing to worry about there
