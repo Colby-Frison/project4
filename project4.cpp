@@ -206,6 +206,16 @@ public:
             DT middleValue = values[leftSize];
             values.clear();
             children.clear();
+
+            vector<int> myValues = collect_values();
+            cout << "List of all values: ";
+            for (const auto& value : values) {
+                cout << value << ", ";
+            }
+            for (const auto& value : myValues) {
+                cout << value << ", ";
+            }
+
             values.push_back(middleValue);
 
             // Set up child pointers
@@ -220,6 +230,15 @@ public:
             for (const auto& val : right->values) { cout << val << " "; }
 
             cout << "\nCurrent node value: " << middleValue << endl;
+
+            //isssue with split_node
+            myValues = collect_values();
+            cout << "List of all values: ";
+            for (const auto& value : myValues) {
+                cout << value << ", ";
+            }
+            // this output doesnt print out 121 even though it should
+            // I think that when collect vallues is called it excluded values in nodes with only 1 value
         }
     }
 
@@ -284,6 +303,7 @@ public:
     }
 
     void buildTree(vector<DT>& input_values) {
+
         // Clear existing tree
         for (auto child : children) {
             delete child;
@@ -415,6 +435,10 @@ int main() {
                     addIntToOutput(output, value);
                     addWordToOutput(output, " has been inserted.");
                     addNewLineToOutput(output);
+
+                     // issue with insertion or split_Node
+                    //After insertion is made and node is split parent value is removed, but children are retained
+                    cout << endl;
                 } catch (duplicateInsertion& e) {
                     addWordToOutput(output, "The value = ");
                     addIntToOutput(output, value);
