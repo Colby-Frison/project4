@@ -140,6 +140,7 @@ public:
         return children.empty(); // vector method, if empty returns true, this is just a remaster of that
     }
 
+
     /* * * * * * * * Insert Method * * * * * * * * *
     Checks if value already exists in the tree, if not move on.abort
 
@@ -182,6 +183,12 @@ public:
 
     * * * * * * * * * * * * * * * * * * * * * * * * */
     void split_node() {
+        cout << "Splitting node with values: ";
+            for(const auto& val : values){
+                cout << val << " ";
+            }
+            cout << endl;
+
         if (is_leaf()) {
             // Create two new child nodes
             MTree* left = new MTree(M);
@@ -198,12 +205,21 @@ public:
             // Keep middle value in current node
             DT middleValue = values[leftSize];
             values.clear();
+            children.clear();
             values.push_back(middleValue);
 
             // Set up child pointers
-            children.clear();
             children.push_back(left);
             children.push_back(right);
+
+
+            cout << "Left node values: ";
+            for (const auto& val : left->values) { cout << val << " "; }
+
+            cout << "\nRight node values: ";
+            for (const auto& val : right->values) { cout << val << " "; }
+
+            cout << "\nCurrent node value: " << middleValue << endl;
         }
     }
 
@@ -289,7 +305,13 @@ public:
             int start = i * D;
             //output statement for start
 
-            int end = (i == M-1) ? input_values.size() : (i+1) * D; // this is ternary 
+            int end;
+            if (i == M-1) {
+                end = input_values.size();
+            } else {
+                end = (i + 1) * D;
+            }
+
             
             if (start < end) {
                 vector<DT> childValues(input_values.begin() + start, 
@@ -303,7 +325,6 @@ public:
                 }
             }
         }
-        //cout << "The tree has been rebuilt." << endl;
     }
 
     /* * * * * Collect Values Method * * * * * *
@@ -390,6 +411,10 @@ int main() {
                 cin >> value;
                 try {
                     myTree->insert(value);
+                    addWordToOutput(output, "The value = ");
+                    addIntToOutput(output, value);
+                    addWordToOutput(output, " has been inserted.");
+                    addNewLineToOutput(output);
                 } catch (duplicateInsertion& e) {
                     addWordToOutput(output, "The value = ");
                     addIntToOutput(output, value);
@@ -432,6 +457,14 @@ int main() {
                 myTree->buildTree(myValues);
                 addWordToOutput(output, "The tree has been rebuilt.");
                 addNewLineToOutput(output);
+                
+                /*
+                vector<char> temp;
+                appendVectorToOutput(temp, myTree->print_final_list());
+                string temp1(temp.begin(), temp.end());// create string based on output vector
+                cout << temp1 << endl;
+                */
+
                 break;
             }
             default:
