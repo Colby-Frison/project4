@@ -184,63 +184,61 @@ public:
     * * * * * * * * * * * * * * * * * * * * * * * * */
     void split_node() {
         cout << "Splitting node with values: ";
-            for(const auto& val : values){
+        for (const auto& val : values) {
+            cout << val << " ";
+        }
+        cout << endl;
+
+        if (is_leaf()) {
+            // Clear existing children
+            for (auto child : children) {
+                delete child;
+            }
+            children.clear();
+
+            int total = values.size();
+            int D = total / M;  // Divisor
+            
+            vector<MTree*> newChildren;
+            vector<DT> newValues;
+
+            for (int i = 0; i < M; i++) {
+                int start = i * D;
+                int end = (i == M - 1) ? total : (i + 1) * D;
+
+                cout << "Start index: " << start << ", End index: " << end << endl;
+
+                if (start < end) {
+                    MTree* child = new MTree(M);
+                    child->values.assign(values.begin() + start, values.begin() + end);
+                    newChildren.push_back(child);
+                    
+                    if (i < M - 1 && end < total) {
+                        newValues.push_back(values[end]);
+                    }
+                }
+            }
+
+            values = newValues;
+            children = newChildren;
+
+            cout << "New node values after split: ";
+            for (const auto& val : values) {
                 cout << val << " ";
             }
             cout << endl;
 
-        if (is_leaf()) {
-            // Create two new child nodes
-            MTree* left = new MTree(M);
-            MTree* right = new MTree(M);
-
-            // Calculate split points
-            int total = values.size();
-            int leftSize = total / 2;
-
-            // Distribute values to children
-            left->values = vector<DT>(values.begin(), values.begin() + leftSize);
-            right->values = vector<DT>(values.begin() + leftSize + 1, values.end());
-
-            // Keep middle value in current node
-            DT middleValue = values[leftSize];
-            values.clear();
-            children.clear();
-
-            vector<int> myValues = collect_values();
-            cout << "List of all values: ";
-            for (const auto& value : values) {
-                cout << value << ", ";
+            cout << "Children node values after split: ";
+            for (const auto& child : children) {
+                for (const auto& val : child->values) {
+                    cout << val << " ";
+                }
+                cout << " | ";
             }
-            for (const auto& value : myValues) {
-                cout << value << ", ";
-            }
-
-            values.push_back(middleValue);
-
-            // Set up child pointers
-            children.push_back(left);
-            children.push_back(right);
-
-
-            cout << "Left node values: ";
-            for (const auto& val : left->values) { cout << val << " "; }
-
-            cout << "\nRight node values: ";
-            for (const auto& val : right->values) { cout << val << " "; }
-
-            cout << "\nCurrent node value: " << middleValue << endl;
-
-            //isssue with split_node
-            myValues = collect_values();
-            cout << "List of all values: ";
-            for (const auto& value : myValues) {
-                cout << value << ", ";
-            }
-            // this output doesnt print out 121 even though it should
-            // I think that when collect vallues is called it excluded values in nodes with only 1 value
+            cout << endl;
         }
     }
+
 
     /* * * * * find_child Method * * * * * * * * *
     This is a simple helper method in a few different methods.
@@ -436,9 +434,7 @@ int main() {
                     addWordToOutput(output, " has been inserted.");
                     addNewLineToOutput(output);
 
-                     // issue with insertion or split_Node
-                    //After insertion is made and node is split parent value is removed, but children are retained
-                    cout << endl;
+                    // value 121 is removed after 122 is inserted
                 } catch (duplicateInsertion& e) {
                     addWordToOutput(output, "The value = ");
                     addIntToOutput(output, value);
