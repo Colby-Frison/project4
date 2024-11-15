@@ -1,34 +1,40 @@
 Checklist and log notes :)
-  % is a check mark
+  X is a check mark
 
 [] Make sure writing in intro is elaborated on 
 
-[%] make sure exceptions are good
+[X] make sure exceptions are good
 
 [] Algorithms under exceptions are made by gpt so make sure they are good and figure out if they are actually needed or if they can be implemented in method
-    [%] Figure out what 'Iterator' is cuz idk
+    [X] Figure out what 'Iterator' is cuz idk
 
 [] complete method logic
-    [%] probably going to have to create an output variable to print the output to.
+    [X] probably going to have to create an output variable to print the output to.
         - Same thing I did as the last project, its pretty simple, but just going through the code and making adjustments will take time
     [] M variable ~ Check with prof/TAs to see what the proper M is for values and children
-    [%] Insert Method ~ look at instructions to see if repeated values are allowed or not (insert method)
-    [%] split_node Method ~ I have it splitting into a left and right node at the moment, but I'm not sure if thats right, 
+    [X] Insert Method ~ look at instructions to see if repeated values are allowed or not (insert method)
+    [X] split_node Method ~ I have it splitting into a left and right node at the moment, but I'm not sure if thats right, 
         - Idea: splitting into left and right may not be applicable for all sizes of M, but I'm not 100% sure
             * look through instructions for clarifications, but probably ask prof. or TAs
         - Also check if each node always must have M-1 values, or if it can act like a 2,3 tree where it can go 1 value 2 nodes, or 2 values 3 nodes
     [] Build Tree Method ~ Write description for this method
         - Most complex method so make sure to really be sure everything is right
-    [%] Find Method ~ fix output statements
-    [%] Print Final List Method ~ Find out if I actually need to keep it or not
+    [X] Find Method ~ fix output statements
+    [X] Print Final List Method ~ Find out if I actually need to keep it or not
 
-[%] Match text to given output files
+[X] Match text to given output files
   - Done for 1, some white space errors, but its probably fine
 [] Ensure main method matches the one provided
-[%] Make sure all rules are followed
-[%] Make sure all cases work
+[X] Make sure all rules are followed
+[X] Make sure all cases work
 
-[%] Change output to single statement instead of cout statements
+[X] Change output to single statement instead of cout statements
+
+
+[] Write parts 2 and 3 of the project
+[] Take out debugg lines
+[] If free try to override exceptions so it keeps going instead of having to pause and play
+[] submit finished version to gradescope
 
 
 11/12/2024 5:50 pm
