@@ -22,6 +22,7 @@ Checklist and dev notes :)
         - Most complex method so make sure to really be sure everything is right
     [%] Find Method ~ fix output statements
     [%] Print Final List Method ~ Find out if I actually need to keep it or not
+    [] rewrite description for split_node
     
     [] elaboration as im working through this
 

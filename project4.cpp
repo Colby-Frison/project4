@@ -183,11 +183,6 @@ public:
 
     * * * * * * * * * * * * * * * * * * * * * * * * */
     void split_node() {
-        cout << "Splitting node with values: ";
-            for(const auto& val : values){
-                cout << val << " ";
-            }
-            cout << endl;
 
         if (is_leaf()) {
             // Create two new child nodes
@@ -211,15 +206,6 @@ public:
             // Set up child pointers
             children.push_back(left);
             children.push_back(right);
-
-
-            cout << "Left node values: ";
-            for (const auto& val : left->values) { cout << val << " "; }
-
-            cout << "\nRight node values: ";
-            for (const auto& val : right->values) { cout << val << " "; }
-
-            cout << "\nCurrent node value: " << middleValue << endl;
         }
     }
 
@@ -256,6 +242,7 @@ public:
         MTree* child = find_child(value);
         return child->search(value);
     }
+
 
     /* * * * * Remove Method * * * * * * * * * * *
     Simple remove method, the first if statement is in regards to leaf nodes.
