@@ -11,21 +11,20 @@ Checklist and log notes :)
 [] complete method logic
     [X] probably going to have to create an output variable to print the output to.
         - Same thing I did as the last project, its pretty simple, but just going through the code and making adjustments will take time
-    [] M variable ~ Check with prof/TAs to see what the proper M is for values and children
+    [X] M variable ~ Check with prof/TAs to see what the proper M is for values and children
     [X] Insert Method ~ look at instructions to see if repeated values are allowed or not (insert method)
     [X] split_node Method ~ I have it splitting into a left and right node at the moment, but I'm not sure if thats right, 
         - Idea: splitting into left and right may not be applicable for all sizes of M, but I'm not 100% sure
             * look through instructions for clarifications, but probably ask prof. or TAs
         - Also check if each node always must have M-1 values, or if it can act like a 2,3 tree where it can go 1 value 2 nodes, or 2 values 3 nodes
-    [] Build Tree Method ~ Write description for this method
+    [X] Build Tree Method ~ Write description for this method
         - Most complex method so make sure to really be sure everything is right
     [X] Find Method ~ fix output statements
     [X] Print Final List Method ~ Find out if I actually need to keep it or not
-    [] rewrite description for split_node
-    
-    [] elaboration as im working through this
+    [X] rewrite description for split_node
 
-[%] Match text to given output files
+
+[X] Match text to given output files
   - Done for 1, some white space errors, but its probably fine
 [] Ensure main method matches the one provided
 [X] Make sure all rules are followed
@@ -35,8 +34,8 @@ Checklist and log notes :)
 
 
 [] Write parts 2 and 3 of the project
-[] Take out debugg lines
-[] If free try to override exceptions so it keeps going instead of having to pause and play
+[X] Take out debug lines
+[] If free, try to override exceptions so it keeps going instead of having to pause and play
 [] submit finished version to gradescope
 
 
@@ -83,7 +82,11 @@ Checklist and log notes :)
 
 11/15/2024 12:12 pm
  - Issue with the 121 thing has been found, its with the split_node method. BuildTree handles node splitting differently, so when it is done with insertion
-   it uses a different thing, so which is where the issue arrises.
+   it uses a different thing, so which is where the issue arises.
  - I literally just used the code from build tree and put it in split node to make split node work properly. If everything works and I have a lot of extra time
-   I can rework the buildTree method to just use the split_node, but realisticly, that aint happening
+   I can rework the buildTree method to just use the split_node, but realistically, that ain't happening
+
+11/16/2024 2:09 pm
+ - Just submitted the code portion of the project, everything works, so now I'm just going to go through make sure everything complies with the 
+   instruction and add the finishing touches to comments, as well as doing parts 2 and 3.
 
