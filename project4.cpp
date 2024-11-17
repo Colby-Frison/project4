@@ -902,7 +902,26 @@ Issues and Resolutions:
     assistance of a large language model I found I could add all the necessary elements to a vector in the form of
     characters, then output the vector by simply looping through it. This is definitely a very complicated 
     solution and probably made the program marginally slower, but its a solid solution.
-    
-    
-    
+
+    The next major issue I had was really weird. For some reason cases 1 and 2 both worked with no issue, but in 
+    the 3rd case there was an issue with 1 number. For some reason number 121 would disappear when 122 was 
+    inserted. I went through pretty much every single method trying to figure out what the issue is, and by pretty
+    much every method i mean like every single one. It was a pain trying to track it down I wrote debug statements
+    and the way it printed everything showed up fine, but then in the final list it was still gone. After a lot 
+    of redundant debug statements and a lot of searching I found that the issue came from the spit_node method. 
+    I forgot exactly what I did to fix the problem, but I know the stem of the issue was the root value wasn't 
+    saved properly. To resolve the issue I just ripped a lot of the code from the build tree method and put it in
+    split node. I made the build tree first since it was more important for getting everything started, which is 
+    the main reason why build tree had its own logic in the first place. The replacement of the code almost worked 
+    right off the bat, but some adjustment was required to get it working. Overall it was a long winded problem 
+    with a relatively simple solution. 
+Verification: 
+    This is essentially the same as the specific tests question, I just run the provided inputs then I match my 
+    outputs with the given outputs. This works well in showing what went wrong and exactly where. Additionally, I
+    submitted on gradescope prematurely in order to make sure everything works the way intended by gradescope, as 
+    even if it works in my tests it doesn't matter if it doesn't work on the official test. I also had numerous 
+    debug statements to ensure everything was functioning properly. The most notable were for the split_node, 
+    print_all, and build tree, these debug statements allowed me to see exactly what was happening in each method
+    which then allowed me to ensure they were functioning as intended. 
+
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
