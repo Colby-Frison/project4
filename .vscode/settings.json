@@ -11,10 +11,15 @@
         "format": "cpp",
         "initializer_list": "cpp",
         "xstring": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "atomic": "cpp",
+        "ios": "cpp",
+        "xiosbase": "cpp"
     },
     "cSpell.words": [
         "cout",
-        "gradescope"
+        "gradescope",
+        "Mtree",
+        "multiway"
     ]
 }
