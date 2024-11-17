@@ -924,4 +924,105 @@ Verification:
     print_all, and build tree, these debug statements allowed me to see exactly what was happening in each method
     which then allowed me to ensure they were functioning as intended. 
 
+__________________________________________________________________________________________________________________
+
+I also made a pretty extensive To-Do List and a log of activity. So if that count for anything I've added it below
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: 
+
+  X is a check mark
+
+[X] Make sure writing in intro is elaborated on 
+
+[X] make sure exceptions are good
+
+[X] Algorithms under exceptions are made by gpt so make sure they are good and figure out if they are actually needed or if they can be implemented in method
+    [X] Figure out what 'Iterator' is cuz idk
+
+[X] complete method logic
+    [X] probably going to have to create an output variable to print the output to.
+        - Same thing I did as the last project, its pretty simple, but just going through the code and making adjustments will take time
+    [X] M variable ~ Check with prof/TAs to see what the proper M is for values and children
+    [X] Insert Method ~ look at instructions to see if repeated values are allowed or not (insert method)
+    [X] split_node Method ~ I have it splitting into a left and right node at the moment, but I'm not sure if thats right, 
+        - Idea: splitting into left and right may not be applicable for all sizes of M, but I'm not 100% sure
+            * look through instructions for clarifications, but probably ask prof. or TAs
+        - Also check if each node always must have M-1 values, or if it can act like a 2,3 tree where it can go 1 value 2 nodes, or 2 values 3 nodes
+    [X] Build Tree Method ~ Write description for this method
+        - Most complex method so make sure to really be sure everything is right
+    [X] Find Method ~ fix output statements
+    [X] Print Final List Method ~ Find out if I actually need to keep it or not
+    [X] rewrite description for split_node
+
+
+[X] Match text to given output files
+  - Done for 1, some white space errors, but its probably fine
+[X] Ensure main method matches the one provided
+[X] Make sure all rules are followed
+[X] Make sure all cases work
+
+[X] Change output to single statement instead of cout statements
+
+
+[X] Write parts 2 and 3 of the project
+[X] Take out debug lines
+[] If free, try to override exceptions so it keeps going instead of having to pause and play
+[X] submit finished version to gradescope
+
+
+11/12/2024 5:50 pm
+ - I just did the first quick comparison with the actual test case and it seems pretty good, I still need to go through and
+   check everything off on the To-Do list, but so far it seems pretty good
+ - An issue I'm having is I have to start and stop the running for it to actually do the whole thing, I have no clue why, but it still working
+   for whatever reason. I assume its a compiler issue cuz its still works (i think), but there really isn't a way to be sure. I'll do that at some point
+ - Still need to change the output so it spits it all out at the end, I don't know if thats an issue with not doing redirect input or its just
+   the right way, but I need to do it regardless
+ - What I'm realizing is this is just a sorting method for a list, so the output being the same doesn't really mean anything, but then again 
+   most of the program is just rearranging the list, so theres no real tell tale way to know if im doing this correctly.
+ - I can go more in depth on the outputs to see if there is a difference, and try to relate the stuff to the M-tree structure, but its lack of
+   solid definition also makes it difficult to properly know how to do stuff. 
+
+
+11/13/2024 8:51 pm
+ - At the moment case 1 is working with proper outputs, on the text compare website it says there is an error in the final print
+   statement but im assuming that its just a white space error.
+ - I still need to check if everything works with case 2 and 3 as well as write parts 2 and 3 of the project, but thats teh easy parts
+ - AI usage on this project was significantly less pretty much just a general outline, then the algorithms at the beginning along with
+   handling the output. Then there was just some basic syntax stuff related to vectors
+ - The hardest part so far was probably handling the output since teh string library isn't allowed, I think it just adds everything to a vector
+   but its kinda silly
+ - Assuming all of the logic is actually correct all I really have to do left is just fix the issue were the compiler stops mid way through
+   and I just have to click pause and play to keep it going, along with making sure 2 and 3 match. I also have to write parts 2 and 3, but 
+   this is kinda part of that so it won't be that difficult.
+
+11/14/2024 3:47 pm
+ - just submitted it to the gradescope to see if it actually works, and it took a while, but it did run and passed for cases 1 and 
+   2, 3 did not pass, but thats probably because of the exceptions that I haven't really verified yet. 
+ - I'm still going to verify that I'm actually doing this properly, and make sure everything is actually done, but I just wanted to see
+   if the code actually ran properly before it was due
+ - I also still need to do parts 2 and 3, but thats pretty easy. And comments are already done for most of the code so nothing to worry about there
+
+9:58 pm
+ - I have no clue whats wrong. For some reason whenever 122 is inserted 121 is no longer printed out. I have no clue. I've been staring at the same
+   like 3 methods for an hours and have no clue whats wrong, I've found exactly where the issue is in the output, i had it print out the values before
+   and after insertion as well as before and after the node is split, but this still showed 121 existed. 
+ - The only possible explanation for the thing not working is for some reason its overlooked when the tree is rebuilt, but I have no clue why it would
+   do that. I've added some debug stuff so hope fully I can fix it tomorrow, but if worst comes to worst I add a specific if statement so it doesn't 
+   break in this very specific edge case that exists for apparently no reason.
+ - I'm just so confused.
+
+11/15/2024 12:12 pm
+ - Issue with the 121 thing has been found, its with the split_node method. BuildTree handles node splitting differently, so when it is done with insertion
+   it uses a different thing, so which is where the issue arises.
+ - I literally just used the code from build tree and put it in split node to make split node work properly. If everything works and I have a lot of extra time
+   I can rework the buildTree method to just use the split_node, but realistically, that ain't happening
+
+11/16/2024 2:09 pm
+ - Just submitted the code portion of the project, everything works, so now I'm just going to go through make sure everything complies with the 
+   instruction and add the finishing touches to comments, as well as doing parts 2 and 3.
+
+9:48 pm
+ - I was going to document throughout the day but I kinda forgot, so 
+ - Just finished parts 2 and 3, everything should be done, now its just submitting.
+
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
