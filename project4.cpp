@@ -228,10 +228,10 @@ public:
             for (int i = 0; i < M; i++) {
                 int start = i * D;
                 int end;
-                if (i == M-1) {
-                    end = input_values.size();
-                } else {
-                    end = (i + 1) * D;
+                if (i == M - 1) { 
+                    end = total; 
+                } else { 
+                    end = (i + 1) * D; 
                 }
 
                 if (start < end) {
@@ -334,7 +334,9 @@ public:
     void buildTree(vector<DT>& input_values) {
 
         // Clear existing tree
-        ~MTree();
+        for (auto child : children) {
+                delete child;
+            }
 
         children.clear();
         values.clear();
